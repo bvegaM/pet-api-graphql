@@ -1,0 +1,39 @@
+scalar Date
+scalar Long
+
+enum PetType {
+    CAT
+    DOG
+    LIZARD
+    BIRD
+    FISH
+    SNAKE
+    OTHER
+}
+
+type Pet{
+    id: ID!
+    name: String!
+    type:PetType!
+    birthDate:Date!
+    notes:String
+    owner:Customer!
+}
+
+input PetDto{
+    name: String!
+    type:PetType!
+    birthDate:String!
+    notes:String,
+    ownerId:Long!
+}
+
+extend type Query {
+    findPet(petId: ID!):Pet
+    findPets:[Pet!]
+    findPetsByOwner(ownerId:ID!):[Pet]
+}
+
+extend type Mutation {
+    savePet(request: PetDto!):Pet!
+}

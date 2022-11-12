@@ -1,0 +1,23 @@
+type Customer{
+    id: ID!
+    name: String!
+    phoneNumber: String
+    notes: String!
+    pets: [Pet]
+}
+
+type Query {
+    findCustomers:[Customer!]
+    findOwnerByPet(petId:ID!):Customer
+}
+
+input CustomerDto{
+    name: String!
+    phoneNumber: String
+    notes: String!
+}
+
+type Mutation {
+    saveCustomer(request:CustomerDto!):Customer!
+}
+

@@ -1,0 +1,35 @@
+enum EmployeeSkillEnum{
+    PETTING
+    WALKING
+    FEEDING
+    MEDICATING
+    SHAVING
+}
+
+type Employee{
+    id:ID!
+    name:String!
+    skills:[EmployeeSkillEnum!]
+    daysAvailable:[String!]
+}
+
+input EmployeeDto{
+    name:String!
+    skills:[EmployeeSkillEnum!]
+    daysAvailable:[String!]
+}
+
+input Request {
+    skills:[EmployeeSkillEnum!]
+    daysAvailable:String!
+}
+
+extend type Query {
+    findEmployee(employeeId:ID!):Employee
+    findEmployeesForService(request: Request!):[Employee!]
+}
+#
+extend type Mutation {
+    saveEmployee(request: EmployeeDto!):Employee!
+    updateEmployee(employeeId:ID!, daysAvailable:[String!]):Employee!
+}

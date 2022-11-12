@@ -1,0 +1,24 @@
+type Schedule{
+    id:ID!
+    date:Date!
+    employees:[Employee!]
+    pets:[Pet!]
+    activities:[EmployeeSkillEnum!]
+}
+
+input ScheduleDto{
+    date:String!
+    employeesId:[Long!]
+    petsId:[Long!]
+    activities:[EmployeeSkillEnum!]
+}
+
+extend type Query {
+    findScheduleForEmployee(employeeId:ID!):[Schedule!]
+    findScheduleForPet(petId:ID!):[Schedule!]
+    findScheduleForCustomer(ownerId:ID!):[Schedule!]
+}
+
+extend type Mutation {
+    saveSchedule(request: ScheduleDto):Schedule!
+}

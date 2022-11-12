@@ -1,0 +1,146 @@
+# customer
+
+mutation{
+  saveCustomer(request: {name: "bryam vega",phoneNumber: "0985346351",notes:"sin notas"}){
+    name
+    phoneNumber
+  }
+}
+
+query{
+  findCustomers{
+    name
+    pets{
+      name
+      type
+    }
+  }
+}
+
+query{
+  findOwnerByPet(petId:1){
+    name
+    phoneNumber
+  }
+}
+
+
+# pet
+
+mutation{
+  savePet(request: {name:"milo",type:CAT,birthDate:"2022-11-11",notes:"SIN NOTAS",ownerId:1}){
+    name
+    type
+    birthDate
+    owner{
+      name
+    }
+  }
+}
+
+query{
+  findPets{
+    name
+    type
+  }
+}
+
+query{
+  findPet(petId:1){
+    name
+    type
+  }
+}
+
+query{
+  findPetsByOwner(ownerId:1){
+    name
+    type
+  }
+}
+
+# employees
+
+mutation{
+  saveEmployee(request: {name:"David Morales",skills:[PETTING,WALKING],daysAvailable:["MONDAY"]}){
+    name
+    skills
+    daysAvailable
+  }
+}
+
+mutation{
+  updateEmployee(employeeId: 1, daysAvailable: ["FRIDAY"]){
+    name
+  }
+}
+
+query{
+  findEmployee(employeeId:1){
+    name
+    skills
+    daysAvailable
+  }
+}
+
+query{
+  findEmployeesForService(request:{skills:[PETTING],daysAvailable:"MONDAY"}){
+    name
+    skills
+    daysAvailable
+  }
+}
+
+# schedule
+
+mutation{
+  saveSchedule(request:{date:"2022-12-11",petsId:[1],employeesId:[1],activities:[PETTING]}){
+    date
+    pets{
+      name
+    }
+    employees{
+      name
+    }
+    activities
+  }
+}
+
+query{
+  findScheduleForEmployee(employeeId:1){
+    date
+    pets{
+      name
+    }
+    employees{
+      name
+    }
+    activities
+  }
+}
+
+query{
+  findScheduleForCustomer(ownerId:1){
+    date
+    pets{
+      name
+    }
+    employees{
+      name
+    }
+    activities
+  }
+}
+
+query{
+  findScheduleForPet(petId:1){
+    date
+    pets{
+      name
+    }
+    employees{
+      name
+    }
+    activities
+  }
+}
